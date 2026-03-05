@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+         - name: app-container
+           image: manisha03b/pythonapp:appimage
+           ports:
+             - containerPort: 5000
+           envFrom:
+              - configMapRef:
+                  name: app-config
+            
+           resources:
+              requests:
+                cpu: "100m"
+                memory: "128Mi"
+              limits:
+                cpu: "500m"
+                memory: "256Mi"
+
+           livenessProbe:
+              httpGet:
+                path: /
+                port: 5000
+              initialDelaySeconds: 30
+              periodSeconds: 2
+           readinessProbe:
+              httpGet:
+                path: /
+                port: 5000
+              initialDelaySeconds: 10
+              periodSeconds: 5

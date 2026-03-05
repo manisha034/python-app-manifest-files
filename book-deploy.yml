@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: book
+  template:
+    metadata:
+      labels:
+        app: book
+    spec:
+      containers:
+         - name: book-container
+           image: manisha03b/pythonapp:bookimage
+           ports:
+             - containerPort: 5002
+           envFrom:
+              - configMapRef:
+                  name: app-config
+            
+           resources:
+              requests:
+                cpu: "100m"
+                memory: "128Mi"
+              limits:
+                cpu: "500m"
+                memory: "256Mi"
+
+           
