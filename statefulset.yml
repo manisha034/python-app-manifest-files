@@ -31,15 +31,4 @@ spec:
                 cpu: "500m"
                 memory: "500Mi"
 
-          volumeMounts:
-            - name: mysql-storage
-              mountPath: /var/lib/mysql
-  volumeClaimTemplates:
-    - metadata:
-        name: mysql-storage
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 1Gi
 

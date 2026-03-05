@@ -5,8 +5,8 @@ metadata:
   name: app-resource-quota
 spec:
   hard:
-    pods: "10"
-    requests.cpu: "2"
-    requests.memory: "2Gi"
-    limits.cpu: "4"
-    limits.memory: "4Gi"
+    pods: "20"
+    requests.cpu: "3"
+    requests.memory: "3Gi"
+    limits.cpu: "5"
+    limits.memory: "5Gi"
